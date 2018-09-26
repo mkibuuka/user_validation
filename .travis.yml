@@ -11,6 +11,6 @@ script:
   - py.test --cov
 branches:
   only:
-    - tests
+    - usermodel
 after_success:
   - coveralls
