@@ -7,8 +7,7 @@ class TestcreateUser(TestCase):
     Test class for testing instances of a user
     """
     def setUp(self):
-        self.new_user = User('michael', 'myco', 28, 'male', 'me@me.com', 'me12345')
-
+        self.new_user = User('michael', 'myco', 28, 'me@me.com', 'me12345')
 
     def test_create_user(self):
 
