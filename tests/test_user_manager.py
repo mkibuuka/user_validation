@@ -10,11 +10,10 @@ class TestUserManager(TestCase):
     def setUp(self):
         user_data = ('michael', 'mico', 18, 'me@gmail.com', 'Mem!12345t')
         user_dataa = ('ivans', 'kibuuks', 28, 'kibuu@gmail.com', 'tRy!@78645r')
+        login_data = ('travis', 'painfull', 58, 'trygmail.com', 'tRy!@78645r')
         self.user_1 = User(*user_data)
         self.user_2 = User(*user_dataa)
-
-    def tearDown(self):
-        pass
+        self.user_3 = User(*login_data)
 
     def test_successful_new_user_signup(self):
         self.assertEqual(user_manager.signUp(self.user_1), 'mico has successfully signed up')
@@ -38,3 +37,6 @@ class TestUserManager(TestCase):
 
     def test_to_to_to_successfully_login_user(self):
         self.assertTrue(user_manager.login(self.user_1))
+
+    def test_to_to_to_unsuccessfully_login_user(self):
+        self.assertEqual(user_manager.login(self.user_3), 'invalid email or missing email address')
