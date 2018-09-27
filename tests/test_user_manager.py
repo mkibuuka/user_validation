@@ -35,3 +35,6 @@ class TestUserManager(TestCase):
     def test_to_to_get_all_users_successful(self):
         self.assertIsInstance(user_manager.get_all_users(), list)
         self.assertEqual(len(user_manager.get_all_users()), 2)
+
+    def test_to_to_to_successfully_login_user(self):
+        self.assertTrue(user_manager.login(self.user_1))
