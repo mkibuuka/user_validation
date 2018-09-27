@@ -26,9 +26,6 @@ class UserManager(object):
                 return True
         return validation
 
-    def change_password(self, user, password):
-        pass
-
     # check if user exits based on an email address
     def check_if_user_exists(self, email):
         """[summary]
