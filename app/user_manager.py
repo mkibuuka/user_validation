@@ -1,5 +1,6 @@
 from app.user import User
 from app.validation import validate_user
+from app.validation import validate_user_login
 
 
 class UserManager(object):
@@ -15,6 +16,18 @@ class UserManager(object):
                 self.insert_user(user)
                 return user.username + ' has successfully signed up'
             return 'user with ' + user.email + ' already exists'
+
+    def login(self, user):
+        validation = validate_user_login(user.email, user.password)
+        if validation is True:
+            response = self.get_user_by_email(user.email)
+            if isinstance(response, User):
+                response.active = True
+                return True
+        return validation
+
+    def change_password(self, user, password):
+        pass
 
     # check if user exits based on an email address
     def check_if_user_exists(self, email):
