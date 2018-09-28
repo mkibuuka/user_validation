@@ -1,8 +1,8 @@
 from unittest import TestCase
-from app.validation import verify_length
+from app.validation import is_valid_length
 from app.validation import verify_age
 from app.validation import verify_password
-from app.validation import verify_username
+from app.validation import is_valid_name_or_username
 from app.validation import verify_email
 
 
@@ -12,13 +12,13 @@ class TestUserValidation(TestCase):
     """
 
     def test_valid_name_username_input(self):
-        self.assertFalse(verify_username('michael', 'michael'))
-        self.assertTrue(verify_username('michael', 'myco'))
+        self.assertFalse(is_valid_name_or_username('michael', 'michael'))
+        self.assertTrue(is_valid_name_or_username('michael', 'myco'))
 
     def test_name_length_greater_or_equal_to_four(self):
-        self.assertFalse(verify_length('mmm'))
-        self.assertTrue(verify_length('namessss'))
-        self.assertTrue(verify_length('mmmm'))
+        self.assertFalse(is_valid_length('mmm'))
+        self.assertTrue(is_valid_length('namessss'))
+        self.assertTrue(is_valid_length('mmmm'))
 
     def test_age_takes_an_integer_value(self):
         self.assertTrue(verify_age(2))
