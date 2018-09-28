@@ -1,44 +1,24 @@
 import re
 
 
-def verify_length(name):
-    if not len(name) >= 4:
-        return False
-    return True
+def is_valid_length(name):
+    return len(name) >= 4
 
 
-def verify_username(name, username):
-    if not name == username and verify_length(name) is True and verify_length(username) is True:
-        return True
-    return False
-
-
-# def verify_name_username(name, username):
-#     if not name or not username:
-#         return False
-#     if not verify_username(name, username):
-#         return False
-#     if name == '' or name.isspace() or username == '' or username.isspace:
-#         return False
-#     return True
+def is_valid_name_or_username(name, username):
+    return name != username and is_valid_length(name) and is_valid_length(username)
 
 
 def verify_age(age):
-    if isinstance(age, str) or age == 0:
-        return False
-    return True
+    return isinstance(age, int) and age > 0
 
 
 def verify_password(password):
-    if re.match(r"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@$&]).{4}", password) is None:
-        return False
-    return True
+    return re.match(r"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@$&]).{4}", password) != None
 
 
 def verify_email(email):
-    if re.match(r"\w+@[a-zA-Z_]+?\.[a-zA-Z]", email) is None:
-        return False
-    return True
+    return re.match(r"\w+@[a-zA-Z_]+?\.[a-zA-Z]", email) != None
 
 
 def validate_user(name, username, age, email, password):
@@ -55,7 +35,7 @@ def validate_user(name, username, age, email, password):
         [bool] -- returns True if all values are valid
     """
 
-    if not verify_username(name, username):
+    if not is_valid_name_or_username(name, username):
         return 'Please provide the correct name and/or username'
     if not verify_age(age):
         return 'Please provide a valid age'
