@@ -20,9 +20,9 @@ class UserManager(object):
     def login(self, user):
         validation = validate_user_login(user.email, user.password)
         if validation is True:
-            response = self.get_user_by_email(user.email)
-            if isinstance(response, User):
-                response.active = True
+            registered_user = self.get_user_by_email(user.email)
+            if isinstance(registered_user, User):
+                registered_user.active = True
                 return True
         return validation
 
