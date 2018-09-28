@@ -1,9 +1,9 @@
 from unittest import TestCase
 from app.validation import is_valid_length
-from app.validation import verify_age
-from app.validation import verify_password
+from app.validation import is_valid_age
+from app.validation import is_valid_password
 from app.validation import is_valid_name_or_username
-from app.validation import verify_email
+from app.validation import is_valid_email
 
 
 class TestUserValidation(TestCase):
@@ -21,28 +21,28 @@ class TestUserValidation(TestCase):
         self.assertTrue(is_valid_length('mmmm'))
 
     def test_age_takes_an_integer_value(self):
-        self.assertTrue(verify_age(2))
-        self.assertFalse(verify_age('2'))
+        self.assertTrue(is_valid_age(2))
+        self.assertFalse(is_valid_age('2'))
 
     def test_age_cannot_be_zero(self):
-        self.assertFalse(verify_age(0))
+        self.assertFalse(is_valid_age(0))
 
     def test_valid_password_contains_uppercase_letter(self):
-        self.assertTrue(verify_password('E3m@'))
-        self.assertFalse(verify_password('3cm@'))
+        self.assertTrue(is_valid_password('E3m@'))
+        self.assertFalse(is_valid_password('3cm@'))
 
     def test_valid_password_contains_lowercase_letter(self):
-        self.assertTrue(verify_password('E3m@'))
-        self.assertFalse(verify_password('3MM@'))
+        self.assertTrue(is_valid_password('E3m@'))
+        self.assertFalse(is_valid_password('3MM@'))
 
     def test_valid_password_contains_a_digit(self):
-        self.assertTrue(verify_password('E3m@'))
-        self.assertFalse(verify_password('cMM@'))
+        self.assertTrue(is_valid_password('E3m@'))
+        self.assertFalse(is_valid_password('cMM@'))
 
     def test_valid_password_contains_special_character(self):
-        self.assertTrue(verify_password('E3m@'))
-        self.assertFalse(verify_password('cM6g'))
+        self.assertTrue(is_valid_password('E3m@'))
+        self.assertFalse(is_valid_password('cM6g'))
 
     def test_valid_email_address(self):
-        self.assertTrue(verify_email('me@mail.com'))
-        self.assertFalse(verify_email('megmail.com'))
+        self.assertTrue(is_valid_email('me@mail.com'))
+        self.assertFalse(is_valid_email('megmail.com'))
